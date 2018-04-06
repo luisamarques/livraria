@@ -76,7 +76,106 @@ String classe = "";
                 <div class="col-lg-6">
 
                     <div class="form-group">
+                        <label>Código</label>ll>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Área Administrativa</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-file"></i> Aqui vai o conteúdo de apresentação
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">ll>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Área Administrativa</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-file"></i> Aqui vai o conteúdo de apresentação
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Categoria
+        </div>
+        <div class="panel-body">
+
+            <div class="alert <%=classe%>">
+                <%=msg%>ll>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Área Administrativa</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-file"></i> Aqui vai o conteúdo de apresentação
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Categoria
+        </div>
+        <div class="panel-body">
+
+            <div class="alert <%=classe%>">
+                <%=msg%>
+            </div>
+            <form action="#" method="post">
+                
+                <div class="col-lg-6">
+
+                    <div class="form-group">
                         <label>Código</label>
+                        <input class="form-control" type="text" name="txtCodigo" readonly value="<%=obj.getId()%>"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <labe
+            </div>
+            <form action="#" method="post">
+                
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        <label>Código</label>
+                        <input class="form-control" type="text" name="txtCodigo" readonly value="<%=obj.getId()%>"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <labe
+            Categoria
+        </div>
+        <div class="panel-body">
+
+            <div class="alert <%=classe%>">
+                <%=msg%>
+            </div>
+            <form action="#" method="post">
+                
+                <div class="col-lg-6">
+
+                    <div class="form-group">
+                        <label>Código</label>
+                        <input class="form-control" type="text" name="txtCodigo" readonly value="<%=obj.getId()%>"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <labe
                         <input class="form-control" type="text" name="txtCodigo" readonly value="<%=obj.getId()%>"/>
                     </div>
                     
