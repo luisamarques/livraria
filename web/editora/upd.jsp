@@ -1,20 +1,22 @@
 
 <%@page import="java.math.BigDecimal"%>
-<%@page import="modelo.Categoria"%>
-<%@page import="dao.CategoriaDAO"%>
+<%@page import="modelo.Editora"%>
+<%@page import="dao.EditoraDAO"%>
 <%@include file="../cabecalho.jsp" %>
 <%
 String msg ="";
 String classe = "";
     
-    CategoriaDAO dao = new CategoriaDAO();
-    Categoria obj = new Categoria();
+    EditoraDAO dao = new EditoraDAO();
+    Editora obj = new Editora();
     //verifica se é postm ou seja, quer alterar
     if(request.getMethod().equals("POST")){
         
         //popular com oq ele digitou no form
-        obj.setId(Integer.parseInt(request.getParameter("txtCodigo")));
+        
         obj.setNome(request.getParameter("txtNome"));
+        obj.setCnpj("txtCnpj");
+        obj.setLogo(request.getParameter("txtFoto"));
    
         Boolean resultado = dao.alterar(obj);
         
@@ -34,7 +36,7 @@ String classe = "";
             return;
         }
         
-        dao = new CategoriaDAO();
+        dao = new EditoraDAO();
         obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("codigo")));
         
         if(obj == null){
@@ -62,25 +64,32 @@ String classe = "";
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Categoria
+            Editora
         </div>
         <div class="panel-body">
 
             <div class="alert <%=classe%>">
                 <%=msg%>
             </div>
-            <form action="#" method="post">
+            <form action="../UploadWS" method="post" enctype="multipart/form-data"m>
                 
                 <div class="col-lg-6">
 
-                    <div class="form-group">
-                        <label>Código</label>
-                        <input class="form-control" type="text" name="txtCodigo" readonly value="<%=obj.getId()%>"/>
-                    </div>               
+                                   
                     <div class="form-group">
                         <label>Nome</label>
                         <input class="form-control" type="text" name="txtNome" required value="<%=obj.getNome() %>" />
                     </div>
+                    <div class="form-group">
+                        <label>Cnpj</label>
+                        <input class="form-control" type="text" name="txtCnpj" required value="<%=obj.getCnpj() %>" />
+                    </div>
+                    
+                    <div>
+                        <label> Foto </label>
+                        <input type="file" name="txtFoto">
+                    </div>
+                    
                     
 
 

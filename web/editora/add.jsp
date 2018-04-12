@@ -1,20 +1,19 @@
 <%@page import="java.math.BigDecimal"%>
-<%@page import="dao.AutorDAO"%>
-<%@page import="modelo.Autor"%>
+<%@page import="dao.EditoraDAO"%>
+<%@page import="modelo.Editora"%>
 <%@page import="java.util.List"%>
 
 <%@include file="../cabecalho.jsp" %>
 <%
     String msg = "";
     String classe = "";
-    Autor obj = new Autor();
-    AutorDAO dao = new AutorDAO();
+    Editora obj = new Editora();
+    EditoraDAO dao = new EditoraDAO();
     
-    if (request.getParameter("txtNome") != null && request.getParameter("txtNacionalidade")!= null && request.getParameter("txtSexo")!=null) {
+    if (request.getParameter("txtNome") != null && request.getParameter("txtCnpj")!= null) {
         obj.setNome(request.getParameter("txtNome"));
-        obj.setNacionalidade(request.getParameter("txtNacionalidade"));
-        obj.setSexo(request.getParameter("txtSexo").charAt(0));
-        obj.setFoto(request.getParameter("txtFoto"));
+        obj.setCnpj(request.getParameter("txtCnpj"));
+        obj.setLogo(request.getParameter("txtFoto"));
        
 
         Boolean resultado = dao.incluir(obj);
@@ -49,7 +48,7 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Autores
+            Editoras
         </div>
         <div class="panel-body">
 
@@ -63,13 +62,8 @@
                     <div class="form-group">
                         <label>Nome</label>
                         <input class="form-control" type="text"  name="txtNome"  required />
-                        <label>Nacionalidade</label>
-                        <input class="form-control" type="text"  name="txtNacionalidade"  required />
-                        <label>Sexo</label>
-                        <select name="txtSexo">
-                            <option value='M'> Masculino </option>
-                            <option value='F'> Feminino </option>
-                        </select>
+                        <label>Cpnj</label>
+                        <input class="form-control" type="text"  name="txtCnpj"  required />
                         <label> Foto </label>
                         <input type="file" name="txtFoto">
                     </div>
