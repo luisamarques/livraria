@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Autor.findAll", query = "SELECT a FROM Autor a"),
 @NamedQuery(name = "Autor.findFilter", query = "SELECT a FROM Autor a" 
-    +"WHERE a.nome like :filtro")
+    +" WHERE a.nome like :filtro")
 })
 public class Autor implements Serializable {
 
