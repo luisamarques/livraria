@@ -15,7 +15,7 @@ String classe = "";
         //popular com oq ele digitou no form
         
         obj.setNome(request.getParameter("txtNome"));
-        obj.setCnpj("txtCnpj");
+        obj.setCnpj(request.getParameter("txtCnpj"));
         obj.setLogo(request.getParameter("txtFoto"));
    
         Boolean resultado = dao.alterar(obj);
@@ -37,7 +37,7 @@ String classe = "";
         }
         
         dao = new EditoraDAO();
-        obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("codigo")));
+        obj = dao.buscarPorChavePrimaria(request.getParameter("codigo"));
         
         if(obj == null){
             response.sendRedirect("index.jsp");
