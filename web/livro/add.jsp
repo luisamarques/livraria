@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.AutorLivro"%>
+<%@page import="java.util.Date"%>
 <%@page import="dao.AutorDAO"%>
 <%@page import="dao.CategoriaDAO"%>
 <%@page import="modelo.Autor"%>
@@ -14,6 +17,25 @@
 <%
     String msg = "";
     String classe = "";
+    if(request.getMethod().equals("POST")){
+        String[] autoresid =  request.getParameterValues("autores");
+        Livro l = new Livro();
+        l.setNome("Storm");
+        l.setDatapublicacao(new Date());
+        l.setPreco(13.12f);
+        List<Autor> listaautores = new ArrayList<>();
+        for(String id : autoresid){
+            Integer idinteger =  Integer.parseInt(id);
+             listaautores.add(new Autor());
+            
+            
+            
+            
+        }
+        l.setAutorList(listaautores);
+        LivroDAO dao = new LivroDAO();
+        dao.incluir(l);
+    }
     Livro obj = new Livro();
     LivroDAO dao = new LivroDAO();
     Categoria cat = new Categoria();

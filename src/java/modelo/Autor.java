@@ -8,16 +8,19 @@ package modelo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,11 +28,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "autor")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Autor.findAll", query = "SELECT a FROM Autor a"),
-@NamedQuery(name = "Autor.findFilter", query = "SELECT a FROM Autor a" 
-    +" WHERE a.nome like :filtro")
-})
+    @NamedQuery(name = "Autor.findById", query = "SELECT a FROM Autor a WHERE a.id = :id"),
+    @NamedQuery(name = "Autor.findByNome", query = "SELECT a FROM Autor a WHERE a.nome = :nome"),
+    @NamedQuery(name = "Autor.findByNacionalidade", query = "SELECT a FROM Autor a WHERE a.nacionalidade = :nacionalidade"),
+    @NamedQuery(name = "Autor.findBySexo", query = "SELECT a FROM Autor a WHERE a.sexo = :sexo"),
+    @NamedQuery(name = "Autor.findByFoto", query = "SELECT a FROM Autor a WHERE a.foto = :foto")})
 public class Autor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +55,9 @@ public class Autor implements Serializable {
     private Character sexo;
     @Column(name = "foto")
     private String foto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "autor")
-    private List<AutorLivro> autorLivroList;
+    
+    @ManyToMany(mappedBy= "autorList")
+    private List<Livro> livroList;
 
     public Autor() {
     }
@@ -106,12 +113,13 @@ public class Autor implements Serializable {
         this.foto = foto;
     }
 
-    public List<AutorLivro> getAutorLivroList() {
-        return autorLivroList;
+    @XmlTransient
+    public List<Livro> getLivroList() {
+        return livroList;
     }
 
-    public void setAutorLivroList(List<AutorLivro> autorLivroList) {
-        this.autorLivroList = autorLivroList;
+    public void setLivroList(List<Livro> livroList) {
+        this.livroList = livroList;
     }
 
     @Override
