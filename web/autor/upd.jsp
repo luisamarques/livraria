@@ -1,4 +1,3 @@
-
 <%@page import="java.math.BigDecimal"%>
 <%@page import="modelo.Autor"%>
 <%@page import="dao.AutorDAO"%>
@@ -10,15 +9,17 @@ String classe = "";
     AutorDAO dao = new AutorDAO();
     Autor obj = new Autor();
     //verifica se é postm ou seja, quer alterar
+    String m="",f="";
+    
     if(request.getMethod().equals("POST")){
         
         //popular com oq ele digitou no form
         obj.setId(Integer.parseInt(request.getParameter("txtCodigo")));
         obj.setNome(request.getParameter("txtNome"));
-        obj.setNacionalidade("txtNacionalidade");
+        obj.setNacionalidade(request.getParameter("txtNacionalidade"));
         obj.setSexo(request.getParameter("txtSexo").charAt(0));
         obj.setFoto(request.getParameter("txtFoto"));
-   
+  
         Boolean resultado = dao.alterar(obj);
         
         if(resultado){
@@ -39,7 +40,14 @@ String classe = "";
         
         dao = new AutorDAO();
         obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("codigo")));
-        
+        if(obj.getSexo().equals('M'))
+        {
+            m ="selected";
+        }
+        else
+        {
+            f = "selected";
+        }
         if(obj == null){
             response.sendRedirect("index.jsp");
             return;
@@ -91,8 +99,8 @@ String classe = "";
                     <div class="form-group">
                         <label> Sexo </label>
                         <select name="txtSexo">
-                            <option value='M'> Masculino </option>
-                            <option value='F'> Feminino </option>
+                            <option value='M' <%=m%>> Masculino </option>
+                            <option value='F'<%=f%>> Feminino </option>
                     </select>
                         </div>
                     <div>

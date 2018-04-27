@@ -73,10 +73,16 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="../console/"><i class="fa fa-fw fa-edit"></i> Consoles</a>
+                        <a href="../autor/index.jsp"><i class="fa fa-fw fa-edit"></i> Autores</a>
                     </li>
                     <li>
-                        <a href="../joystick/"><i class="fa fa-fw fa-bar-chart-o"></i> Joysticks</a>
+                        <a href="../livro/index.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> Livros</a>
+                    </li>
+                    <li>
+                        <a href="../editora/index.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> Editoras</a>
+                    </li>
+                    <li>
+                        <a href="../categoria/index.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> Categorias</a>
                     </li>
                     
                 </ul>

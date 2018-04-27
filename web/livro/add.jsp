@@ -1,5 +1,4 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.AutorLivro"%>
 <%@page import="java.util.Date"%>
 <%@page import="dao.AutorDAO"%>
 <%@page import="dao.CategoriaDAO"%>
@@ -17,12 +16,35 @@
 <%
     String msg = "";
     String classe = "";
-    if(request.getMethod().equals("POST")){
-        String[] autoresid =  request.getParameterValues("autores");
-        Livro l = new Livro();
-        l.setNome("Storm");
-        l.setDatapublicacao(new Date());
-        l.setPreco(13.12f);
+ 
+    Livro obj = new Livro();
+    LivroDAO dao = new LivroDAO();
+    Categoria cat = new Categoria();
+    Editora edi = new Editora();
+
+    CategoriaDAO cdao = new CategoriaDAO();
+    List<Categoria> clista = cdao.listar();
+     EditoraDAO edao = new EditoraDAO();
+    List<Editora> elista = edao.listar();
+     AutorDAO adao = new AutorDAO();
+    List<Autor> alista = adao.listar();
+    if (request.getParameter("txtNome") != null && request.getParameter("txtPreco")!= null && request.getParameter("txtData") != null && request.getParameter("txtCategoria") !=null && request.getParameter("txtEditora") != null) {
+        obj.setNome(request.getParameter("txtNome"));
+        cat.setId(Integer.parseInt(request.getParameter("txtCategoria")));
+        edi.setCnpj(request.getParameter("txtEditora"));
+        
+        obj.setCategoria(cat);
+        obj.setImagem1(request.getParameter("txtImagem1"));
+        obj.setImagem2(request.getParameter("txtImagem2"));
+        obj.setImagem3(request.getParameter("txtImagem3"));
+        obj.setSinopse(request.getParameter("txtSinopse"));
+        obj.setPreco(Float.parseFloat(request.getParameter("txtPreco")));
+        obj.setEditora(edi);
+        obj.setDatapublicacao(StormData.formata(request.getParameter("txtData")));
+   
+        
+         String[] autoresid =  request.getParameter("autores").split(";");
+        
         List<Autor> listaautores = new ArrayList<>();
         for(String id : autoresid){
             Integer idinteger =  Integer.parseInt(id);
@@ -32,34 +54,7 @@
             
             
         }
-        l.setAutorList(listaautores);
-        LivroDAO dao = new LivroDAO();
-        dao.incluir(l);
-    }
-    Livro obj = new Livro();
-    LivroDAO dao = new LivroDAO();
-    Categoria cat = new Categoria();
-    Editora edi = new Editora();
-    Autor aut = new Autor();
-    CategoriaDAO cdao = new CategoriaDAO();
-    List<Categoria> clista = cdao.listar();
-     EditoraDAO edao = new EditoraDAO();
-    List<Editora> elista = edao.listar();
-     AutorDAO adao = new AutorDAO();
-    List<Autor> alista = adao.listar();
-    if (request.getParameter("txtNome") != null && request.getParameter("txtCnpj")!= null && request.getParameter("txtPreco") != null && request.getParameter("txtData") !=null && request.getParameter("txtCategoria") != null && request.getParameter("txtEditora") != null) {
-        obj.setNome(request.getParameter("txtNome"));
-        cat.setNome(request.getParameter("txtCategoria"));
-        edi.setNome("txtEditora");
-        aut.setNome("txtAutor");
-        obj.setCategoria(cat);
-        obj.setDatapublicacao(StormData.formata(request.getParameter("txtData")));
-        obj.setImagem1(request.getParameter("txtImagem1"));
-        obj.setImagem2(request.getParameter("txtImagem2"));
-        obj.setImagem3(request.getParameter("txtImagem3"));
-        obj.setSinopse(request.getParameter("txtSinopse"));
-        obj.setPreco(Float.parseFloat(request.getParameter("txtPreco")));
-        obj.setEditora(edi);
+        obj.setAutorList(listaautores);
         
 
         Boolean resultado = dao.incluir(obj);
@@ -121,35 +116,38 @@
                         <input class="form-control" type="text"  name="txtData"  required />
                         <label>Preço</label>
                         <input class="form-control" type="text"  name="txtPreco"  required />
-                        <label> Autor </label>
-                        <select>
-                            <option value=""> Selecione </option>
+                        <label> Autores </label>
+                        <select name="autores" multiple>
+                           
                             <%
                                 for (Autor a : alista) {
                             %>
                             <option value="<%=a.getId()%>">
                                 <%=a.getNome()%>
                             </option>
+                            <%}%>
                         </select>
                         <label> Editora </label>
-                        <select>
+                        <select name="txtEditora">
                             <option value=""> Selecione </option>
                             <%
                                 for (Editora e : elista) {
                             %>
-                            <option value="<%=a.getId()%>">
+                            <option value="<%=e.getCnpj()%>">
                                 <%=e.getNome()%>
                             </option>
+                            <%}%>
                         </select>
                             <label> Categoria </label>
-                        <select>
+                        <select name="txtCategoria">
                             <option value=""> Selecione </option>
                             <%
                                 for (Categoria c : clista) {
                             %>
-                            <option value="<%=a.getId()%>">
+                            <option value="<%=c.getId()%>">
                                 <%=c.getNome()%>
                             </option>
+                            <%}%>
                         </select>
                     </div>
                     
