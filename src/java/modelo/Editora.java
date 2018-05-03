@@ -108,7 +108,7 @@ public class Editora implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Editora[ cnpj=" + cnpj + " ]";
+        return nome;
     }
     
 }
