@@ -29,7 +29,7 @@ String classe = "";
     if(request.getMethod().equals("POST")){
         
         //popular com oq ele digitou no form
-        obj.setId(Integer.parseInt(request.getParameter("txtCodigo")));
+        obj.setId(Integer.parseInt(request.getParameter("txtId")));
         obj.setNome(request.getParameter("txtNome"));
         obj.setPreco(Float.parseFloat(request.getParameter("txtPreco")));
         obj.setDatapublicacao(StormData.formata("dd/MM/yyyy"));
@@ -112,7 +112,7 @@ String classe = "";
                 <div class="col-lg-6">
                         <div class="form-group">
                             <label>Id</label>
-                            <input class="form-control" type="text"  name="txtNome"  required value="<%=obj.getId() %>" />
+                            <input class="form-control" type="text"  name="txtId"  readonly value="<%=obj.getId() %>" />
                         <label>Nome</label>
                         <input class="form-control" type="text"  name="txtNome"  required value ="<%=obj.getNome()%>"/>
                         <label>Sinopse</label>
