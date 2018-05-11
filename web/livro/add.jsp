@@ -40,7 +40,7 @@
         obj.setSinopse(request.getParameter("txtSinopse"));
         obj.setPreco(Float.parseFloat(request.getParameter("txtPreco")));
         obj.setEditora(edi);
-        obj.setDatapublicacao(StormData.formata("dd/MM/yyyy"));
+        obj.setDatapublicacao(StormData.formata(request.getParameter("txtData")));
    
         
          String[] autoresid =  request.getParameter("autores").split(";");

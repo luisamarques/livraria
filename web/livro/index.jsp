@@ -1,4 +1,4 @@
-
+<%@page import="util.StormData"%>
 <%@page import="modelo.Livro"%>
 <%@page import="dao.LivroDAO"%>
 <%@page import="java.util.List"%>
@@ -74,17 +74,14 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Autores</th>
+                        <th> ID</th>
+                        <th> Nome</th>
                         <th> Preço</th>
-                        <th> Data de Publicação</th>
                         <th> Categoria</th>
                         <th> Editora</th>
                         <th> Imagem1</th>
                         <th> Imagem2</th>
                         <th> Imagem3</th>
-                        <th>Sinopse</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,15 +91,13 @@
                     <tr>
                         <td><%=item.getId()%></td>
                         <td><%=item.getNome() %></td>
-                        <td><%=item.getAutorList()%></td>
                         <td><%=item.getPreco()%></td>
-                        <td><%=item.getDatapublicacao()%></td>
+                        <td><%=StormData.formata(item.getDatapublicacao())%></td>
                         <td><%=item.getCategoria()%></td>
                         <td><%=item.getEditora()%></td>
                        <td><img src="../arquivos/<%=item.getImagem1()%>" width="70px" height="60px"/> </td>
                        <td><img src="../arquivos/<%=item.getImagem2()%>" width="70px" height="60px"/> </td>
                        <td><img src="../arquivos/<%=item.getImagem3()%>" width="70px" height="60px"/> </td>
-                       <td><%=item.getSinopse()%></td>
                         <td><a href="upd.jsp?codigo=<%=item.getId()%>" class="btn  btn-primary btn-sm">Alterar</a>
                             <button class="btn  btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
                                     onclick="codigo=<%=item.getId()%>">Excluir</button>  

@@ -32,10 +32,10 @@ String classe = "";
         obj.setId(Integer.parseInt(request.getParameter("txtId")));
         obj.setNome(request.getParameter("txtNome"));
         obj.setPreco(Float.parseFloat(request.getParameter("txtPreco")));
-        obj.setDatapublicacao(StormData.formata("dd/MM/yyyy"));
+        obj.setDatapublicacao(StormData.formata(request.getParameter("txtData")));
         obj.setSinopse(request.getParameter("txtSinopse"));
-        cat.setNome(request.getParameter("txtCategoria"));
-        edi.setNome(request.getParameter("txtEditora"));
+        cat.setId(Integer.parseInt(request.getParameter("txtCategoria")));
+        edi.setCnpj(request.getParameter("txtEditora"));
         obj.setCategoria(cat);
         obj.setEditora(edi);
         obj.setImagem1(request.getParameter("txtImagem1"));
@@ -111,51 +111,75 @@ String classe = "";
                 
                 <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Id</label>
-                            <input class="form-control" type="text"  name="txtId"  readonly value="<%=obj.getId() %>" />
+                        <label>Id</label>
+                        <input class="form-control" type="text"  name="txtId"  readonly value="<%=obj.getId() %>" />
                         <label>Nome</label>
                         <input class="form-control" type="text"  name="txtNome"  required value ="<%=obj.getNome()%>"/>
                         <label>Sinopse</label>
-                        <input class="form-control" type="text"  name="txtSinopse"  required value="<%=obj.getSinopse()%>"/>
+                        <textarea class="form-control" required name="txtSinopse"><%=obj.getSinopse()%>
+                        </textarea>
                         <label> Foto 1 </label>
-                        <input type="file" name="txtImagem1" value="<%=obj.getImagem1()%>">
+                        <input type="file" name="txtImagem1" value="<%=obj.getImagem1()%>" id="arquivo1" accept="image/*">
+                        <img src="../arquivos/<%=obj.getImagem1()%>" id="img1"/>
                         <label> Foto 2 </label>
-                        <input type="file" name="txtImagem2" value="<%=obj.getImagem2()%>">
+                        <input type="file" name="txtImagem2" value="<%=obj.getImagem2()%>" id="arquivo2" accept="image/*">
+                         <img src="../arquivos/<%=obj.getImagem2()%>" id="img2"/>
                         <label> Foto 3 </label>
-                        <input type="file" name="txtImagem3" value="<%=obj.getImagem3()%>">
+                        <input type="file" name="txtImagem3" value="<%=obj.getImagem3()%>" id="arquivo3" accept="image/*">
+                        <img src="../arquivos/<%=obj.getImagem3()%>" id="img3"/>
                         <label>Data de Publicação</label>
-                        <input class="form-control" type="text"  name="txtData"  required value="<%=obj.getDatapublicacao()%>"/>
+                        <input class="form-control" type="text"  name="txtData"  required value="<%=StormData.formata(obj.getDatapublicacao())%>"/>
                         <label>Preço</label>
                         <input class="form-control" type="text"  name="txtPreco"  required value="<%=obj.getPreco()%>"/>
                         <label> Autores </label>
                         <select name="autores" multiple value="<%=obj.getAutorList()%>">
                            
                             <%
+                                String selecionadoo;
                                 for (Autor a : alista) {
+                                if(obj.getAutorList().contains(a)){
+                                       selecionadoo = "selected";
+                                    }
+                                    else{
+                                    selecionadoo="";
+                                }
                             %>
-                            <option value="<%=a.getId()%>">
+                            <option value="<%=a.getId()%>"<%=selecionadoo%>>
                                 <%=a.getNome()%>
                             </option>
                             <%}%>
                         </select>
                         <label> Editora </label>
-                        <select name="txtEditora" value="<%=obj.getEditora()%>">
+                        <select name="txtEditora" >
                             <option value=""> Selecione </option>
-                            <%
+                            <% String selecionado;
                                 for (Editora e : elista) {
+                                    if(obj.getEditora().getCnpj()==e.getCnpj()){
+                                       selecionado = "selected";
+                                    }
+                                    else{
+                                    selecionado="";
+                                }
                             %>
-                            <option value="<%=e.getCnpj()%>">
+                            <option value="<%=e.getCnpj()%>" <%=selecionado%>>
                                 <%=e.getNome()%>
                             </option>
                             <%}%>
                         </select>
                             <label> Categoria </label>
-                        <select name="txtCategoria" value="<%=obj.getCategoria()%>">
+                        <select name="txtCategoria" >
                             <option value=""> Selecione </option>
                             <%
+                                String sele;
                                 for (Categoria c : clista) {
+                                    if(obj.getCategoria().getId()== c.getId()){
+                                       sele = "selected";
+                                    }
+                                    else{
+                                    sele="";
+                                }
                             %>
-                            <option value="<%=c.getId()%>">
+                            <option value="<%=c.getId()%>" <%=sele%>>
                                 <%=c.getNome()%>
                             </option>
                             <%}%>
@@ -173,3 +197,20 @@ String classe = "";
 </div>
 <!-- /.row -->
 <%@include file="../rodape.jsp" %>
+<script>
+    function readURL(input,destino) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#'+destino).attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#arquivo1").change(function(){
+        readURL(this,"img1");
+    });
+</script>
