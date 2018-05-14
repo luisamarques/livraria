@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Livro.findByImagem1", query = "SELECT l FROM Livro l WHERE l.imagem1 = :imagem1"),
     @NamedQuery(name = "Livro.findByImagem2", query = "SELECT l FROM Livro l WHERE l.imagem2 = :imagem2"),
     @NamedQuery(name = "Livro.findByImagem3", query = "SELECT l FROM Livro l WHERE l.imagem3 = :imagem3"),
-    @NamedQuery(name = "Livro.findBySinopse", query = "SELECT l FROM Livro l WHERE l.sinopse = :sinopse")})
+    @NamedQuery(name = "Livro.findBySinopse", query = "SELECT l FROM Livro l WHERE l.sinopse = :sinopse"),
+    @NamedQuery(name= "Livro.findFilter", query= "SELECT l FROM Livro l WHERE UPPER (l.nome) like :filtro")
+})
 public class Livro implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -106,7 +106,7 @@ public abstract class GenericDAO<T, I extends Serializable> {
    }
    
    public List<T> listar(String filtro) throws Exception{
-        return em.createNamedQuery(persistedClass.getSimpleName()+".findFilter").setParameter("filtro","%" + filtro + "%").getResultList();
+        return em.createNamedQuery(persistedClass.getSimpleName()+".findFilter").setParameter("filtro","%" + filtro.toUpperCase() + "%").getResultList();
     }
 
    public T buscarPorChavePrimaria(I chaveprimaria) {

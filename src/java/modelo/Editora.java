@@ -26,7 +26,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Editora.findAll", query = "SELECT e FROM Editora e"),
 @NamedQuery(name = "Editora.findFilter", query = "SELECT e FROM Editora e " 
-    +"WHERE e.nome like :filtro")})
+    +"WHERE UPPER (e.nome) like :filtro")})
 public class Editora implements Serializable {
 
     private static final long serialVersionUID = 1L;
