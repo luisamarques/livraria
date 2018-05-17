@@ -74,8 +74,8 @@
                     <tr>
                       
                         <th>Nome</th>
-                        <th> Cnpj</th>
-                        <th> Foto</th>
+                        <th>Cnpj</th>
+                        <th>Foto</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -77,6 +77,7 @@
                         <th> ID</th>
                         <th> Nome</th>
                         <th> Preço</th>
+                        <th>Data de Publicação</th>
                         <th> Categoria</th>
                         <th> Editora</th>
                         <th> Imagem1</th>

@@ -105,11 +105,11 @@
                         <label>Sinopse</label>
                         <input class="form-control" type="text"  name="txtSinopse"  required />
                         <label> Foto 1 </label>
-                        <input type="file" name="txtImagem1">
+                        <input type="file" name="txtImagem1" required>
                         <label> Foto 2 </label>
-                        <input type="file" name="txtImagem2">
+                        <input type="file" name="txtImagem2" required>
                         <label> Foto 3 </label>
-                        <input type="file" name="txtImagem3">
+                        <input type="file" name="txtImagem3" required>
                         <label>Data de Publicação</label>
                         <input class="form-control" type="text"  name="txtData"  required />
                         <label>Preço</label>

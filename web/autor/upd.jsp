@@ -105,7 +105,9 @@ String classe = "";
                         </div>
                     <div>
                         <label> Foto </label>
-                        <input type="file" name="txtFoto">
+                        <input class="form-control" type="file" name="txtFoto" id="foto"  accept="image/*"  value="<%=obj.getFoto()%>"/>
+                        <img src="../arquivos/<%=obj.getFoto()%>" id="foto"/>
+                        
                     </div>
                     
                     
@@ -119,3 +121,20 @@ String classe = "";
 </div>
 <!-- /.row -->
 <%@include file="../rodape.jsp" %>
+  <script>
+    function readURL(input,destino) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#'+destino).attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#arquivo1").change(function(){
+        readURL(this,"img1");
+    });
+</script>
