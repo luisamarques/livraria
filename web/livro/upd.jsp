@@ -38,9 +38,24 @@ String classe = "";
         edi.setCnpj(request.getParameter("txtEditora"));
         obj.setCategoria(cat);
         obj.setEditora(edi);
-        obj.setImagem1(request.getParameter("txtImagem1"));
-        obj.setImagem2(request.getParameter("txtImagem2"));
-        obj.setImagem3(request.getParameter("txtImagem3"));
+        if(request.getParameter("txtImagem1")!=null){
+            obj.setImagem1(request.getParameter("txtImagem1"));
+        }
+        else{
+            obj.setImagem1(request.getParameter("txtFotoVelha1"));
+        }
+        if(request.getParameter("txtImagem2")!=null){
+            obj.setImagem2(request.getParameter("txtImagem2"));
+        }
+        else{
+            obj.setImagem2(request.getParameter("txtFotoVelha2"));
+        }
+        if(request.getParameter("txtImagem3")!=null){
+            obj.setImagem3(request.getParameter("txtImagem3"));
+        }
+        else{
+            obj.setImagem3(request.getParameter("txtFotoVelha3"));
+        }
         
         String[] autoresid =  request.getParameter("autores").split(";");
          List<Autor> listaautores = new ArrayList<>();
@@ -121,12 +136,15 @@ String classe = "";
                         <label> Foto 1 </label>
                         <input type="file" name="txtImagem1" value="<%=obj.getImagem1()%>" id="arquivo1" accept="image/*">
                         <img src="../arquivos/<%=obj.getImagem1()%>" id="img1"/>
+                        <input type="hidden" name="txtFotoVelha1" value ="<%=obj.getImagem1()%>"/>
                         <label> Foto 2 </label>
                         <input type="file" name="txtImagem2" value="<%=obj.getImagem2()%>" id="arquivo2" accept="image/*">
                          <img src="../arquivos/<%=obj.getImagem2()%>" id="img2"/>
+                         <input type="hidden" name="txtFotoVelha2" value ="<%=obj.getImagem2()%>"/>
                         <label> Foto 3 </label>
                         <input type="file" name="txtImagem3" value="<%=obj.getImagem3()%>" id="arquivo3" accept="image/*">
                         <img src="../arquivos/<%=obj.getImagem3()%>" id="img3"/>
+                        <input type="hidden" name="txtFotoVelha3" value ="<%=obj.getImagem3()%>"/>
                         <label>Data de Publicação</label>
                         <input class="form-control" type="text"  name="txtData"  required value="<%=StormData.formata(obj.getDatapublicacao())%>"/>
                         <label>Preço</label>

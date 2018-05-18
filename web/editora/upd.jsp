@@ -16,8 +16,13 @@ String classe = "";
         
         obj.setNome(request.getParameter("txtNome"));
         obj.setCnpj(request.getParameter("txtCnpj"));
-        obj.setLogo(request.getParameter("txtFoto"));
-   
+        
+        if(request.getParameter("txtLogo")!=null){
+            obj.setLogo(request.getParameter("txtLogo"));
+        }
+        else{
+            obj.setLogo(request.getParameter("txtLogoVelho"));
+        }
         Boolean resultado = dao.alterar(obj);
         
         if(resultado){
@@ -86,9 +91,10 @@ String classe = "";
                     </div>
                     
                     <div>
-                        <label> Foto </label>
-                       <input class="form-control" type="file" name="txtFoto" id="foto"  accept="image/*" />
+                        <label> Logo </label>
+                       <input class="form-control" type="file" name="txtLogo" id="foto"  accept="image/*" />
                         <img src="../arquivos/<%=obj.getLogo()%>" id="foto"/>
+                        <input type="hidden" name="txtLogoVelho" value ="<%=obj.getLogo()%>"/>
                     </div>
                     
                     
