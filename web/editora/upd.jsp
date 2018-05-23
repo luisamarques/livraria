@@ -76,7 +76,7 @@ String classe = "";
             <div class="alert <%=classe%>">
                 <%=msg%>
             </div>
-            <form action="../UploadWS" method="post" enctype="multipart/form-data"m>
+            <form action="../UploadWS" method="post" enctype="multipart/form-data">
                 
                 <div class="col-lg-6">
 

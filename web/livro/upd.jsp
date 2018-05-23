@@ -122,7 +122,7 @@ String classe = "";
             <div class="alert <%=classe%>">
                 <%=msg%>
             </div>
-            <form action="../UploadWS" method="post" enctype="multipart/form-data"m>
+            <form action="../UploadWS" method="post" enctype="multipart/form-data">
                 
                 <div class="col-lg-6">
                         <div class="form-group">
@@ -134,15 +134,15 @@ String classe = "";
                         <textarea class="form-control" required name="txtSinopse"><%=obj.getSinopse()%>
                         </textarea>
                         <label> Foto 1 </label>
-                        <input type="file" name="txtImagem1" value="<%=obj.getImagem1()%>" id="arquivo1" accept="image/*">
+                        <input type="file" name="txtImagem1" value="<%=obj.getImagem1()%>" id="arquivo1" accept="image/*"/>  
                         <img src="../arquivos/<%=obj.getImagem1()%>" id="img1"/>
                         <input type="hidden" name="txtFotoVelha1" value ="<%=obj.getImagem1()%>"/>
                         <label> Foto 2 </label>
-                        <input type="file" name="txtImagem2" value="<%=obj.getImagem2()%>" id="arquivo2" accept="image/*">
+                        <input type="file" name="txtImagem2" value="<%=obj.getImagem2()%>" id="arquivo2" accept="image/*"/>
                          <img src="../arquivos/<%=obj.getImagem2()%>" id="img2"/>
                          <input type="hidden" name="txtFotoVelha2" value ="<%=obj.getImagem2()%>"/>
                         <label> Foto 3 </label>
-                        <input type="file" name="txtImagem3" value="<%=obj.getImagem3()%>" id="arquivo3" accept="image/*">
+                        <input type="file" name="txtImagem3" value="<%=obj.getImagem3()%>" id="arquivo3" accept="image/*"/>
                         <img src="../arquivos/<%=obj.getImagem3()%>" id="img3"/>
                         <input type="hidden" name="txtFotoVelha3" value ="<%=obj.getImagem3()%>"/>
                         <label>Data de Publicação</label>
@@ -230,5 +230,11 @@ String classe = "";
     
     $("#arquivo1").change(function(){
         readURL(this,"img1");
+    });
+       $("#arquivo2").change(function(){
+        readURL(this,"img2");
+    });
+     $("#arquivo3").change(function(){
+        readURL(this,"img3");
     });
 </script>
