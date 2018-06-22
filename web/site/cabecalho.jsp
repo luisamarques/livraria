@@ -1,3 +1,7 @@
+<%@page import="dao.LivroDAO"%>
+<%@page import="modelo.Livro"%>
+<%@page import="dao.AutorDAO"%>
+<%@page import="modelo.Autor"%>
 <%@page import="dao.CategoriaDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Categoria"%>
@@ -6,6 +10,21 @@
     CategoriaDAO cdao = new CategoriaDAO();
     List<Categoria> clista = cdao.listar();
     cdao.fecharConexao();
+    AutorDAO adao = new AutorDAO();
+     List<Autor> alista = adao.listar();
+     adao.fecharConexao();
+     LivroDAO ldao = new LivroDAO();
+     List<Livro> llista;
+     if(request.getParameter("categoriaid")!=null){
+         Integer id = Integer.parseInt(request.getParameter("categoriaid"));
+         Categoria c = cdao.buscarPorChavePrimaria(id);
+         llista = c.getLivroList();
+         
+     }
+     else{
+         llista = ldao.listar();
+     }
+     ldao.fecharConexao();
 %>
 <html>
 	<head>
@@ -67,29 +86,32 @@
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="index.html">Início</a></li>
+								<li class="active"><a href="index.jsp">Início</a></li>
 								<li class="has-dropdown">
-									<a href="shop.html">Categorias</a>
+									<a href="index.jsp">Categorias</a>
 									<ul class="dropdown">
 										<%
                                                                                     for(Categoria item : clista){
                                                                                         
                                                                                     
                                                                                 %>
-                                                                                <li><a href="product-detail.jsp"><%=item.getNome()%></a></li>
+                                                                                <li><a href="index.jsp?categoriaid=<%=item.getId()%>"><%=item.getNome()%></a></li>
 									<%}%>
                                                                         </ul>
 								</li>
 							
                                                                 <li class="has-dropdown">
 	
-									<a href="shop.html">Shop</a>
+									<a href="index.jsp">Autores</a>
 									<ul class="dropdown">
-										<li><a href="product-detail.html">Detalhes do Produto</a></li>
-										<li><a href="cart.html">Carrinho</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="order-complete.html">Order Complete</a></li>
-										<li><a href="add-to-wishlist.html">Wishlist</a></li>
+                                                                            <%
+                                                                                    for(Autor item : alista){
+                                                                                        
+                                                                                    
+                                                                                %>
+                                                                                <li><a href="index.jsp?autorid=<%=item.getId()%>"><%=item.getNome()%></a></li>
+									<%}%>
+										
 									</ul>
 								</li>
 								<li><a href="about.html">About</a></li>

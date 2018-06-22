@@ -38,7 +38,7 @@
 							</div>
 							<div class="desc">
 								<h3><a href="shop.html"><%=item.getNome()%></a></h3>
-								<p class="price"><span>$300.00</span></p>
+								<p class="price"><span><%=item.getPreco()%></span></p>
 							</div>
 						</div>
 					</div>
