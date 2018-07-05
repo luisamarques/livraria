@@ -7,6 +7,9 @@
     <class>modelo.Livro</class>
     <class>modelo.Autor</class>
     <class>modelo.AutorLivro</class>
+    <class>modelo.Cliente</class>
+    <class>modelo.Compralivro</class>
+    <class>modelo.Compra</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/livrarialuisa"/>

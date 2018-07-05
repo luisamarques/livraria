@@ -67,7 +67,17 @@
 										<p><%=obj.getSinopse()%></p>
                                                                                 <span>
                                                                                     Categoria:  <%=obj.getCategoria()%> <br/>   
-                                                                                    Editora: <%=obj.getEditora()%>
+                                                                                    Editora: <%=obj.getEditora()%> <br/>
+                                                                                </span>
+                                                                                 <span>
+                                                                                    Autores:  <%for(Autor a : obj.getAutorList())
+                                                                                    {%>
+                                                                                    <a href="detalheautor?id=<%=a.getId()%>">
+                                                                                    <%=a.getNome()%>
+                                                                                    </a>
+                                                                                     <%   
+                                                                                    }
+                                                                                    %>
                                                                                 </span>
 										<div class="row row-pb-sm">
 											<div class="col-md-4">

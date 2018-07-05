@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,6 +48,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name= "Livro.findFilter", query= "SELECT l FROM Livro l WHERE UPPER (l.nome) like :filtro")
 })
 public class Livro implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "livro")
+    private List<Compralivro> compralivroList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -209,6 +214,14 @@ public class Livro implements Serializable {
     @Override
     public String toString() {
         return "modelo.Livro[ id=" + id + " ]";
+    }
+
+    public List<Compralivro> getCompralivroList() {
+        return compralivroList;
+    }
+
+    public void setCompralivroList(List<Compralivro> compralivroList) {
+        this.compralivroList = compralivroList;
     }
     
 }
