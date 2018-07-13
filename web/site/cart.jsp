@@ -109,7 +109,7 @@
 							</div>
 							<div class="one-eight text-center">
 								<div class="display-tc">
-									<span class="price"><%=obj.getLivro().getPreco()%></span>
+									<span class="price">R$<%=obj.getLivro().getPreco()%></span>
 								</div>
 							</div>
 							<div class="one-eight text-center">
