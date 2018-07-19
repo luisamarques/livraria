@@ -5,6 +5,7 @@
  */
 package dao;
 
+import javax.persistence.Query;
 import modelo.Cliente;
 
 /**
@@ -15,5 +16,17 @@ public class ClienteDAO extends GenericDAO<Cliente, String>{
      public ClienteDAO(){
         super(Cliente.class);
     }
+     public Cliente logar(String email, String senha)
+    {
+        Cliente retorno;
+        Query q = em.createNamedQuery("Cliente.login").setParameter("email", email).setParameter("senha",senha);
+        try {
+            retorno = (Cliente)q.getSingleResult();
+            
+        } catch (Exception e) {
+            retorno =  null;
+        }
+        return retorno;
+}
     
 }
